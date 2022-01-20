@@ -1,4 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { CreateCoffeeDto } from 'src/dto/coffees/create-coffee.dto';
+import { UpdateCoffeeDto } from 'src/dto/coffees/update-coffee.dto';
 import { CoffeeService } from 'src/services/coffee/coffee.service';
 
 @Controller('coffees')
@@ -7,8 +9,8 @@ export class CoffeesController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    create(@Body() body){
-        return this.coffeeService.create(body);
+    create(@Body() createCoffeeDto: CreateCoffeeDto){
+        return this.coffeeService.create(createCoffeeDto);
     }
 
     @Get()
@@ -19,8 +21,8 @@ export class CoffeesController {
 
     @Put(':id')
     @HttpCode(HttpStatus.NO_CONTENT)
-    update(@Param('id') param, @Body() body){
-        return this.coffeeService.update(body, param.id);
+    update(@Param('id') param, @Body() updateCoffeeDto: UpdateCoffeeDto){
+        return this.coffeeService.update(updateCoffeeDto, param.id);
     }
 
     @Delete(':id')    

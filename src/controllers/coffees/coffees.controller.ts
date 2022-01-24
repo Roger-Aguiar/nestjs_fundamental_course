@@ -21,17 +21,17 @@ export class CoffeesController {
 
     @Put(':id')
     @HttpCode(HttpStatus.NO_CONTENT)
-    update(@Param('id') param, @Body() updateCoffeeDto: UpdateCoffeeDto){
-        return this.coffeeService.update(updateCoffeeDto, param.id);
+    update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto){       
+        return this.coffeeService.update(updateCoffeeDto, id);
     }
 
     @Delete(':id')    
-    delete(@Param('id') id: string){
+    delete(@Param('id') id: number){
         return this.coffeeService.delete(id);
     }
 
     @Get(':id')
-    readOne(@Param('id') id: string){
+    readOne(@Param('id') id: number){
         return this.coffeeService.readById(id);
     }
         

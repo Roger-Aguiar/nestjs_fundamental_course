@@ -20,8 +20,8 @@ export class CoffeeService {
         return this.coffees;
     }
 
-    readById(id: string){
-        const coffee = this.coffees.find(item => item.id === +id);
+    readById(id: number){
+        const coffee = this.coffees.find(item => item.id === id);
         if(!coffee)
         {
             throw new NotFoundException(`Coffee with id ${id} not found`);
@@ -29,14 +29,15 @@ export class CoffeeService {
         return coffee;
     }
 
-    update(coffeeDto: any, id: string){
+    update(coffeeDto: any, id: number){
         const existingCoffee = this.readById(id);
+        //const existingCoffee = this.readById(id);
         if(existingCoffee){
             return 'Operation has been completed.';
         }
     }
 
-    delete(id: string){
+    delete(id: number){
         const coffee = this.coffees.find(item => item.id === +id);
         if(!coffee)
         {

@@ -22,7 +22,7 @@ export class CoffeesController {
     @Put(':id')
     @HttpCode(HttpStatus.NO_CONTENT)
     update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto){       
-        return this.coffeeService.update(updateCoffeeDto, id);
+        return this.coffeeService.update(id, updateCoffeeDto);
     }
 
     @Delete(':id')    

@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
 import { CreateCoffeeDto } from 'src/dto/coffees/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/dto/coffees/update-coffee.dto';
+import { PaginationQueryDto } from 'src/dto/common/pagination-query';
 import { CoffeeService } from 'src/services/coffee/coffee.service';
 
 @Controller('coffees')
@@ -15,8 +16,8 @@ export class CoffeesController {
 
     @Get()
     @HttpCode(HttpStatus.OK)
-    read(){
-        return this.coffeeService.read();
+    read(@Query() paginationQuery : PaginationQueryDto){
+        return this.coffeeService.read(paginationQuery);
     }
 
     @Put(':id')
